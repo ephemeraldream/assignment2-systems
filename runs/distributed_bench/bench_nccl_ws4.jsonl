@@ -1,0 +1,4 @@
+{"backend": "nccl", "device": "cuda", "world_size": 4, "size_mb": 1, "dtype": "float32", "iters": 30, "warmup": 5, "mean_ms": 2.6348498494674764, "p50_ms": 2.4543594918213785, "p95_ms": 3.274736617458983, "bandwidth_GBps": 0.5969463498338959}
+{"backend": "nccl", "device": "cuda", "world_size": 4, "size_mb": 10, "dtype": "float32", "iters": 30, "warmup": 5, "mean_ms": 6.983310197635244, "p50_ms": 6.7197540192864835, "p95_ms": 8.195944846374914, "bandwidth_GBps": 2.252318679088061}
+{"backend": "nccl", "device": "cuda", "world_size": 4, "size_mb": 100, "dtype": "float32", "iters": 30, "warmup": 5, "mean_ms": 65.17167078951995, "p50_ms": 64.8259719600901, "p95_ms": 66.29127598134801, "bandwidth_GBps": 2.413416720709464}
+{"backend": "nccl", "device": "cuda", "world_size": 4, "size_mb": 1000, "dtype": "float32", "iters": 30, "warmup": 5, "mean_ms": 613.7922587765692, "p50_ms": 611.1268030363135, "p95_ms": 634.8371951433363, "bandwidth_GBps": 2.562534762388636}
