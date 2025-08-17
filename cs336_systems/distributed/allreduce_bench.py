@@ -46,6 +46,12 @@ def _init_distributed(backend: str) -> Tuple[int, int, int]:
             os.environ["MASTER_ADDR"] = "127.0.0.1"
         if "MASTER_PORT" not in os.environ:
             os.environ["MASTER_PORT"] = os.environ.get("MASTER_PORT", "29500")
+        # Important for NCCL: bind each rank to a specific GPU before init
+        if backend == "nccl":
+            if not torch.cuda.is_available():
+                raise RuntimeError("CUDA not available but NCCL backend selected")
+            device_index = local_rank % torch.cuda.device_count()
+            torch.cuda.set_device(device_index)
         dist.init_process_group(backend=backend)
 
     # Small safety check
