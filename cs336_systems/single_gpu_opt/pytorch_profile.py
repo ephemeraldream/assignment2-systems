@@ -3,7 +3,7 @@
 import torch
 import torch.cuda.nvtx as nvtx
 from torch.profiler import profile, record_function, ProfilerActivity, schedule
-from cs336_systems.benchmarking import benchmarking_script
+from cs336_systems.single_gpu_opt.benchmarking import benchmarking_script
 import argparse
 
 
