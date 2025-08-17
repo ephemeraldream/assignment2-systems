@@ -7,6 +7,7 @@ from typing import List, Tuple
 
 import torch
 import torch.distributed as dist
+from datetime import timedelta
 
 
 def _parse_sizes_mb(sizes_arg: str) -> List[int]:
@@ -52,7 +53,8 @@ def _init_distributed(backend: str) -> Tuple[int, int, int]:
                 raise RuntimeError("CUDA not available but NCCL backend selected")
             device_index = local_rank % torch.cuda.device_count()
             torch.cuda.set_device(device_index)
-        dist.init_process_group(backend=backend)
+        # Shorter timeout to fail fast if something is wrong (e.g., NCCL permissions)
+        dist.init_process_group(backend=backend, timeout=timedelta(minutes=5))
 
     # Small safety check
     assert dist.get_world_size() == world_size, "WORLD_SIZE mismatch"
